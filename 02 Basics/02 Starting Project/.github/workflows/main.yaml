@@ -1,12 +1,16 @@
 name: run tests
 on: push
 jobs:
-  unit_test_lint:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v6
-    - run: |
-            npm ci
-            npm run build
-            npm run test:unit
-            npm run lint 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install nodejs
+        uses: actions/checkout@v3
+        with:   
+          node-version: 18
+      - name: install dependencies
+        run: npm ci
+      - name: run test
+        run: npm test
